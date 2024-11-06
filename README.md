@@ -1,30 +1,47 @@
-# React + TypeScript + Vite
+Этот проект представляет собой тестовое задание. Приложение построено с использованием React, TypeScript, SCSS и React-Redux для управления состоянием. Оно включает авторизацию, навигацию, отображение данных с пагинацией, а также страницы с детальной информацией и возможностью редактирования.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Основные требования
 
-Currently, two official plugins are available:
+### 1. Авторизация
+- Реализована простая авторизация через форму логина с использованием `React-Redux` для управления состоянием.
+- При успешной авторизации пользователь перенаправляется на главную страницу приложения.
+- Без авторизации доступ к остальным страницам заблокирован — доступна только страница логина, при этом пользователь перенаправляется на логин при попытке перейти на другие страницы.
+- Авторизованный пользователь при посещении страницы логина принудительно перенаправляется на главную.
+- Данные для авторизации фиктивные:
+  - **Логин**: `admin`
+  - **Пароль**: `password`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 2. Навигация
+- Приложение включает не менее трёх страниц со списком сущностей.
+- Реализована основная навигация по страницам с использованием `React Router`.
+- Каждая страница содержит таблицу данных с использованием данных из SWAPI API.
 
-## Expanding the ESLint configuration
+### 3. Страницы с таблицами данных
+- Таблицы выводят списки одной из сущностей API SWAPI (например, персонажи, планеты, корабли).
+- Реализована пагинация на каждой странице с использованием параметров запроса к API.
+- При клике на элемент таблицы происходит переход на отдельную страницу с детальной информацией об этой сущности (вложенные маршруты).
+- Набор полей для таблицы произвольный.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 4. Страница отдельной сущности
+- Реализована отдельная страница для отображения детальной информации о выбранной сущности (персонаж, планета или корабль).
+- На этой странице есть возможность редактирования данных сущности через форму с использованием `React Hook Form`.
+- Изменения данных сохраняются только в локальном состоянии (редактирование фиктивное, данные в API не изменяются).
 
-- Configure the top-level `parserOptions` property like this:
+## Установка и запуск
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. Клонируйте репозиторий:
+    ```bash
+    git clone https://github.com/IssaNartay/solva-test-task.git
+    ```
+2. Установите зависимости:
+    ```bash
+    cd solva-test-task
+    npm install
+    ```
+3. Запустите проект:
+    ```bash
+    npm run dev
+    ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+После авторизации доступны страницы с таблицами данных и детальной информацией о сущностях с возможностью редактирования.
